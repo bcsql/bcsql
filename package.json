@@ -1,0 +1,32 @@
+{
+  "name": "bcsql",
+  "version": "0.1.0",
+  "description": "Blockchain SQL",
+  "main": "src/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "truffle test",
+    "bcsql": "node ./src/index.js"
+  },
+  "keywords": [
+    "Blockchain",
+    "SQL",
+    "database",
+    "ethereum"
+  ],
+  "author": "mochalygin",
+  "license": "ISC",
+  "dependencies": {
+    "ethjs-abi": "^0.2.1",
+    "express": "^4.15.4",
+    "express-router": "0.0.1",
+    "node-mysql": "^0.4.2",
+    "truffle-artifactor": "^3.0.0",
+    "truffle-blockchain-utils": "0.0.3",
+    "truffle-contract": "^3.0.0",
+    "truffle-contract-schema": "^1.0.0",
+    "web3": "0.20.0"
+  }
+}
