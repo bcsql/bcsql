@@ -23,6 +23,7 @@
     "express": "^4.15.4",
     "express-router": "0.0.1",
     "node-mysql": "^0.4.2",
+    "promise": "^8.0.1",
     "truffle-artifactor": "^3.0.0",
     "truffle-blockchain-utils": "0.0.3",
     "truffle-contract": "^3.0.0",
