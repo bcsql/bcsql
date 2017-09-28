@@ -36,6 +36,9 @@ router.get('/getDbNameByIndex/:index', (req, res) => app.getDbNameByIndex(Number
 router.get("/getDbData/:name", (req, res) => app.getDbData(req.params.name, res));
 router.get("/createDb/:name", (req, res) => app.createDb(req.params.name, res));
 
+router.get('/checkDataType/:dataType', (req, res) => app.checkDataType(req.params.dataType, res));
+router.get('/addDataType/:dataType', (req, res) => app.addDataType(req.params.dataType, res));
+
 
 // Tell express to use this router with /api before.
 // You can put just '/' if you don't want any sub path before routes.

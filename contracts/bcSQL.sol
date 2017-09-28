@@ -47,7 +47,7 @@ contract bcSQL is Ownable
 	event TableCreated(uint256 id);
 	event Inserted(uint256 tableId, bytes20 infohash);
 
-	// Data types
+	// construct
 
 	function bcSQL()
 	{
@@ -56,6 +56,8 @@ contract bcSQL is Ownable
 		dataTypes['float'] = block.number;
 		dataTypes['string'] = block.number;
 	}
+
+	// Data types
 
 	function checkDataType(string $dataType) constant public returns (bool)
 	{
