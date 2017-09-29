@@ -27,7 +27,10 @@ router.use(function(req, res, next) {
 
 router.get("/getBalance", function(req, res, next) {
     const balance = web3.eth.getBalance(config.address);
-    res.json({balance: web3.fromWei(balance).toNumber()});
+    res.json({
+        account: config.address,
+        balance: web3.fromWei(balance).toNumber()
+    });
 });
 
 router.get('/checkDataType/:dataType', (req, res) => app.checkDataType(req.params.dataType, res));
@@ -37,6 +40,18 @@ router.get("/getDbsCount", (req, res) => app.getDbsCount(res));
 router.get('/getDbNameByIndex/:index', (req, res) => app.getDbNameByIndex(Number(req.params.index), res));
 router.get("/getDbData/:name", (req, res) => app.getDbData(req.params.name, res));
 router.get("/createDb/:name", (req, res) => app.createDb(req.params.name, res));
+
+router.get('/initTable/:dbName/:tableName', (req, res) => app.initTable(req.params.dbName, req.params.tableName, res));
+router.get("/getTablesCount", (req, res) => app.getTablesCount(res));
+router.get('/getTableId/:dbName/:tableName', (req, res) => app.getTableId(req.params.dbName, req.params.tableName, res));
+router.get("/getTableData/:id", (req, res) => app.getTableData(Number(req.params.id), res));
+router.get("/createTable/:id", (req, res) => app.createTable(Number(req.params.id), res));
+
+router.get(
+    '/addColumn/:id/:columnName/:dataType/:nullable/:unique/:isPrimaryKey',
+    (req, res) => app.addColumn(Number(req.params.id), req.params.columnName, req.params.dataType, Boolean(req.params.nullable), Boolean(req.params.unique), Boolean(req.params.isPrimaryKey), res)
+);
+router.get("/getColumnData/:id/:index", (req, res) => app.getColumnData(Number(req.params.id), Number(req.params.index), res));
 
 // Tell express to use this router with /api before.
 // You can put just '/' if you don't want any sub path before routes.

@@ -131,6 +131,7 @@ contract bcSQL is Ownable
 
 		$Db.tableNames.push($tableName);
 
+		// memory leaks here?
         $Table.db = $Db;
 		$Table.name = $tableName;
 		$Table.id = $id;
