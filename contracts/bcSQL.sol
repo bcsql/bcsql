@@ -215,6 +215,7 @@ contract bcSQL is Ownable
 		$Table.columns[$columnName].nullable = $nullable;
 		$Table.columns[$columnName].unique = $unique;
 		$Table.columns[$columnName].isPrimaryKey = $isPrimaryKey;
+		// TODO add event?
 	}
 
 	function getColumnData(uint256 $tableId, uint256 $columnIndex) constant public returns (string name, string dataType, bool nullable, bool unique, bool isPrimaryKey)

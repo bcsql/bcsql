@@ -1,4 +1,4 @@
-const Table = function(contract, config) {
+const Table = function(contract) {
     const table = {};
 
     table.getTablesCount = () => {

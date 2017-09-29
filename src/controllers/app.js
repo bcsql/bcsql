@@ -1,12 +1,14 @@
 const DataType = require('./dataType.js');
 const Db = require('./db.js');
 const Table = require('./table.js');
+const Column = require('./column.js');
 
 const App = function(contract, config) {
     const app = {};
     const dataType = DataType(contract);
     const db = Db(contract);
     const table = Table(contract);
+    const column = Column(contract);
 
     app.checkDataType = (type, res) => {
         dataType.checkDataType(type)
@@ -73,14 +75,14 @@ const App = function(contract, config) {
 
     app.createTable = (id, res) => {
         // TODO check does table have columns and PK end enough rights
-        table.createTable(id, {from: config.address, gas: 1000000})
+        table.createTable(id, {from: config.address, gas: 100000})
             .then(result => res.json({success: 'ok', result: result}))
             .catch(err => res.json({success: 'error', error: err.message}));
     };
 
     app.addColumn = (id, columnName, dataType, nullable, unique, isPrimaryKey, res) => {
         // TODO check is table just inited and enough rights
-        column.addColumn(id, columnName, dataType, nullable, unique, isPrimaryKey, {from: config.address, gas: 1000000})
+        column.addColumn(id, columnName, dataType, nullable, unique, isPrimaryKey, {from: config.address, gas: 500000})
             .then(result => res.json({success: 'ok', result: result}))
             .catch(err => res.json({success: 'error', error: err.message}));
     };

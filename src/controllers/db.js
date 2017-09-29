@@ -1,4 +1,4 @@
-const Db = function(contract, config) {
+const Db = function(contract) {
     const db = {};
 
     db.getDbsCount = () => {

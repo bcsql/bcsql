@@ -49,7 +49,7 @@ router.get("/createTable/:id", (req, res) => app.createTable(Number(req.params.i
 
 router.get(
     '/addColumn/:id/:columnName/:dataType/:nullable/:unique/:isPrimaryKey',
-    (req, res) => app.addColumn(Number(req.params.id), req.params.columnName, req.params.dataType, Boolean(req.params.nullable), Boolean(req.params.unique), Boolean(req.params.isPrimaryKey), res)
+    (req, res) => app.addColumn(Number(req.params.id), req.params.columnName, req.params.dataType, Boolean(Number(req.params.nullable)), Boolean(Number(req.params.unique)), Boolean(Number(req.params.isPrimaryKey)), res)
 );
 router.get("/getColumnData/:id/:index", (req, res) => app.getColumnData(Number(req.params.id), Number(req.params.index), res));
 
