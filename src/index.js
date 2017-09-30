@@ -16,8 +16,8 @@ const Express = require('express');
 const express = Express();
 const router = Express.Router();
 
-const App = require('./controllers/app.js');
-const app = App(contract, config);
+const BC = require('./bc/bc.js');
+const bc = BC(contract, config);
 
 // Router middleware, mentioned it before defining routes.
 router.use(function(req, res, next) {
@@ -33,25 +33,25 @@ router.get("/getBalance", function(req, res, next) {
     });
 });
 
-router.get('/checkDataType/:dataType', (req, res) => app.checkDataType(req.params.dataType, res));
-router.get('/addDataType/:dataType', (req, res) => app.addDataType(req.params.dataType, res));
+router.get('/checkDataType/:dataType', (req, res) => bc.checkDataType(req.params.dataType, res));
+router.get('/addDataType/:dataType', (req, res) => bc.addDataType(req.params.dataType, res));
 
-router.get("/getDbsCount", (req, res) => app.getDbsCount(res));
-router.get('/getDbNameByIndex/:index', (req, res) => app.getDbNameByIndex(Number(req.params.index), res));
-router.get("/getDbData/:name", (req, res) => app.getDbData(req.params.name, res));
-router.get("/createDb/:name", (req, res) => app.createDb(req.params.name, res));
+router.get("/getDbsCount", (req, res) => bc.getDbsCount(res));
+router.get('/getDbNameByIndex/:index', (req, res) => bc.getDbNameByIndex(Number(req.params.index), res));
+router.get("/getDbData/:name", (req, res) => bc.getDbData(req.params.name, res));
+router.get("/createDb/:name", (req, res) => bc.createDb(req.params.name, res));
 
-router.get('/initTable/:dbName/:tableName', (req, res) => app.initTable(req.params.dbName, req.params.tableName, res));
-router.get("/getTablesCount", (req, res) => app.getTablesCount(res));
-router.get('/getTableId/:dbName/:tableName', (req, res) => app.getTableId(req.params.dbName, req.params.tableName, res));
-router.get("/getTableData/:id", (req, res) => app.getTableData(Number(req.params.id), res));
-router.get("/createTable/:id", (req, res) => app.createTable(Number(req.params.id), res));
+router.get('/initTable/:dbName/:tableName', (req, res) => bc.initTable(req.params.dbName, req.params.tableName, res));
+router.get("/getTablesCount", (req, res) => bc.getTablesCount(res));
+router.get('/getTableId/:dbName/:tableName', (req, res) => bc.getTableId(req.params.dbName, req.params.tableName, res));
+router.get("/getTableData/:id", (req, res) => bc.getTableData(Number(req.params.id), res));
+router.get("/createTable/:id", (req, res) => bc.createTable(Number(req.params.id), res));
 
 router.get(
     '/addColumn/:id/:columnName/:dataType/:nullable/:unique/:isPrimaryKey',
-    (req, res) => app.addColumn(Number(req.params.id), req.params.columnName, req.params.dataType, Boolean(Number(req.params.nullable)), Boolean(Number(req.params.unique)), Boolean(Number(req.params.isPrimaryKey)), res)
+    (req, res) => bc.addColumn(Number(req.params.id), req.params.columnName, req.params.dataType, Boolean(Number(req.params.nullable)), Boolean(Number(req.params.unique)), Boolean(Number(req.params.isPrimaryKey)), res)
 );
-router.get("/getColumnData/:id/:index", (req, res) => app.getColumnData(Number(req.params.id), Number(req.params.index), res));
+router.get("/getColumnData/:id/:index", (req, res) => bc.getColumnData(Number(req.params.id), Number(req.params.index), res));
 
 // Tell express to use this router with /api before.
 // You can put just '/' if you don't want any sub path before routes.

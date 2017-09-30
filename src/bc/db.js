@@ -25,7 +25,6 @@ const Db = function(contract) {
         return contract.deployed().then(function(instance) {
             return instance.createDb(name, params);
         }).then(function(result) {
-            // console.log(result);
             if (result.logs.some(function(item) {
                 return 'mined' == item.type && 'DbCreated' == item.event && item.args.name == name
             })) {

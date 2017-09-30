@@ -42,10 +42,8 @@ const Table = function(contract) {
 
     table.createTable = (id, params) => {
         return contract.deployed().then(function(instance) {
-            console.log('???');
             return instance.createTable(id, params);
         }).then(function(result) {
-            console.log(result);
             if (result.logs.some(function(item) {
                 return 'mined' == item.type && 'TableCreated' == item.event && item.args.id == id
             })) {
