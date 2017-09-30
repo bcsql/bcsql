@@ -52,10 +52,11 @@ contract('bcSQL', function(accounts) {
             assert.equal(result.toNumber(), 2, '2 Db was created');
             return bdb.getDbData.call('db2');
         }).then(function (result) {
-            assert.equal(result[0], 'db2', 'Db has name "db2"');
-            assert.equal(result[1], accounts[1], '"db2" owner is ' + accounts[1]);
-            assert.isTrue(result[2].toNumber() > 0, '`Created at` must be bigger than zero');
-            assert.equal(result[3].toNumber(), 0, 'DB must have 0 tables');
+            assert.equal(result[0].toNumber(), 1, '"db2" must has index 1');
+            assert.equal(result[1], 'db2', 'Db has name "db2"');
+            assert.equal(result[2], accounts[1], '"db2" owner is ' + accounts[1]);
+            assert.isTrue(result[3].toNumber() > 0, '`Created at` must be bigger than zero');
+            assert.equal(result[4].toNumber(), 0, 'DB must have 0 tables');
         });
     });
 
@@ -94,10 +95,10 @@ contract('bcSQL', function(accounts) {
             assert.equal(result.logs[0].args.owner, accounts[0]);
             return bdb.getDbData.call('db1');
         }).then(function (result) {
-            assert.equal(result[3].toNumber(), 2, '"db1" must have 2 tables');
+            assert.equal(result[4].toNumber(), 2, '"db1" must have 2 tables');
             return bdb.getDbData.call('db2');
         }).then(function (result) {
-            assert.equal(result[3].toNumber(), 1, '"db2" must have 1 table');
+            assert.equal(result[4].toNumber(), 1, '"db2" must have 1 table');
         });
     });
 

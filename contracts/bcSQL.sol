@@ -5,6 +5,7 @@ import 'zeppelin-solidity/contracts/ownership/Ownable.sol';
 contract bcSQL is Ownable
 {
     struct Db {
+        uint256 id;
         string name;
         address owner;
         uint256 createdAt;
@@ -80,11 +81,11 @@ contract bcSQL is Ownable
 		Db storage $Db = dbs[$dbName];
 	    require($Db.createdAt == 0);
 
+        $Db.id = dbNames.push($dbName) - 1;
 	    $Db.name = $dbName;
 		$Db.owner = msg.sender;
 		$Db.createdAt = block.number;
 
-		dbNames.push($dbName);
 		DbCreated($dbName);
 	}
 
@@ -106,10 +107,10 @@ contract bcSQL is Ownable
 	    return dbNames[$index];
 	}
 
-	function getDbData(string $dbName) constant public returns (string _dbName, address _dbOwner, uint256 _dbCreatedAt, uint256 _tablesCount)
+	function getDbData(string $dbName) constant public returns (uint256 id, string _dbName, address _dbOwner, uint256 _dbCreatedAt, uint256 _tablesCount)
 	{
 	    var $Db = _getDb($dbName);
-	    return ($Db.name, $Db.owner, $Db.createdAt, $Db.tableNames.length);
+	    return ($Db.id, $Db.name, $Db.owner, $Db.createdAt, $Db.tableNames.length);
 	}
 
 	// Tables
