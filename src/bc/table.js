@@ -14,7 +14,7 @@ const Table = function(contract) {
             return instance.initTable(dbName, tableName, params);
         }).then(function(result) {
             if (result.logs.some(function(item) {
-                    return 'mined' == item.type && 'TableInited' == item.event && item.args.dbName == dbName && item.args.name == tableName
+                    return 'mined' === item.type && 'TableInited' === item.event && item.args.dbName === dbName && item.args.name === tableName
                 })) {
                 return {
                     transactionHash: result.receipt.transactionHash,
@@ -45,7 +45,7 @@ const Table = function(contract) {
             return instance.createTable(id, params);
         }).then(function(result) {
             if (result.logs.some(function(item) {
-                return 'mined' == item.type && 'TableCreated' == item.event && item.args.id == id
+                return 'mined' === item.type && 'TableCreated' === item.event && item.args.id.toNumber() === id
             })) {
                 return {
                     transactionHash: result.receipt.transactionHash,

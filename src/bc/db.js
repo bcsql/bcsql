@@ -28,7 +28,7 @@ const Db = function(contract) {
             let id = null;
             if (result.logs.some(function(item) {
                 id = item.args.id;
-                return 'mined' == item.type && 'DbCreated' == item.event && item.args.name == name
+                return 'mined' === item.type && 'DbCreated' === item.event && item.args.name === name
             })) {
                 return {
                     id: id.toNumber(),

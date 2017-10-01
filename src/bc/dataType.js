@@ -12,7 +12,7 @@ const DataType = function(contract) {
             return instance.addDataType(type, params);
         }).then(function(result) {
             if (result.logs.some(function(item) {
-                return 'mined' == item.type && 'DataTypeAdded' == item.event && item.args.dataType == type
+                return 'mined' === item.type && 'DataTypeAdded' === item.event && item.args.dataType === type
             })) {
                 return {
                     transactionHash: result.receipt.transactionHash,
