@@ -45,7 +45,7 @@ const BC = function(contract, config) {
         // TODO check is DB name not in use
         db.createDb(name, {from: config.address, gas: 150000})
             .then(result => res.json({success: 'ok', result: result}))
-            .catch(err => {res.json({success: 'error', error: err.message})});
+            .catch(err => res.json({success: 'error', error: err.message}));
     };
 
     bc.initTable = (dbName, tableName, res) => {
