@@ -43,7 +43,7 @@ contract bcSQL is Ownable
 	mapping(string => uint256) dataTypes;
 
 	event DataTypeAdded(string dataType);
-	event DbCreated(string name);
+	event DbCreated(uint256 id, string name);
 	event TableInited(uint256 id, string dbName, string name, address owner, uint256 initedAt);
 	event TableCreated(uint256 id);
 	event Inserted(uint256 tableId, bytes20 infohash);
@@ -86,7 +86,7 @@ contract bcSQL is Ownable
 		$Db.owner = msg.sender;
 		$Db.createdAt = block.number;
 
-		DbCreated($dbName);
+		DbCreated($Db.id, $dbName);
 	}
 
 	function getDbsCount() constant public returns (uint256 _dbsCount)
