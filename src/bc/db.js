@@ -31,7 +31,7 @@ const Db = function(contract) {
                 return 'mined' == item.type && 'DbCreated' == item.event && item.args.name == name
             })) {
                 return {
-                    id: id,
+                    id: id.toNumber(),
                     transactionHash: result.receipt.transactionHash,
                     blockNumber: result.receipt.blockNumber,
                     gasUsed: result.receipt.gasUsed,
