@@ -52,6 +52,7 @@ contract bcSQL is Ownable
 
 	function bcSQL()
 	{
+		dataTypes['uuid'] = block.number;
 		dataTypes['int'] = block.number;
 		dataTypes['bool'] = block.number;
 		dataTypes['float'] = block.number;
